@@ -23,59 +23,35 @@ MongoClient.connect(
     console.log(`Connected Correctly`);
     const db = client.db(databaseName);
 
-    // db.collection("users").insertOne(
-    //   {
-    //     name: "vikram",
-    //     age: 21,
-    //   },
-    //   (error, result) => {
+    // db.collection("users").findOne(
+    //   { _id: new ObjectId("636683eac42f6336a59b86b4") },
+    //   (error, user) => {
     //     if (error) {
-    //       return console.log("Unable to insert error");
+    //       return console.log("unable to fetch");
     //     }
-    //     console.log(result.insertedId);
+    //     console.log(user);
     //   }
     // );
-    // db.collection("users").insertMany(
-    //   [
-    //     {
-    //       name: "Shivang",
-    //       age: 21,
-    //     },
-    //     {
-    //       name: "Arnav",
-    //       age: 15,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     {
-    //       if (error) {
-    //         return console.log("Unable to insert error");
-    //       }
-    //       console.log(result.insertedIds, result.insertedCount);
-    //     }
-    //   }
-    // );
-    // db.collection("tasks").insertMany(
-    //   [
-    //     {
-    //       description: "Task 1",
-    //       completed: true,
-    //     },
-    //     {
-    //       description: "Task 2",
-    //       completed: false,
-    //     },
-    //     {
-    //       description: "Task 3",
-    //       completed: true,
-    //     },
-    //   ],
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log("Unable to connect");
-    //     }
-    //     console.log(result.insertedCount, result.insertedIds);
-    //   }
-    // );
+
+    db.collection("tasks").findOne(
+      {
+        _id: new ObjectId("636684f745ece204057ea041"),
+      },
+      (error, result) => {
+        if (error) {
+          return console.log("unable to fetch");
+        }
+        console.log(result);
+      }
+    );
+
+    db.collection("tasks")
+      .find({ completed: false })
+      .toArray((error, users) => {
+        if (error) {
+          return console.log("Unable to find");
+        }
+        console.log(users);
+      });
   }
 );
