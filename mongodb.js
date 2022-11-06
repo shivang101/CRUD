@@ -22,31 +22,25 @@ MongoClient.connect(
     }
     console.log(`Connected Correctly`);
     const db = client.db(databaseName);
-    /* ///////////////////////////////////////////////////////////////////
-    const updatePromise = db.collection("users").updateOne(
-      { _id: new ObjectId("636683eac42f6336a59b86b4") },
-      {
-        $set: {
-          age: 69,
-        },
-      }
-    );
 
-    updatePromise
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-*/
+    // 1 query
+
     // db.collection("users")
-    //   .updateOne(
-    //     { _id: new ObjectId("636683eac42f6336a59b86b4") },
+    //   .deleteMany({ age: 21 })
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    //2 query
+
+    // db.collection("users")
+    //   .deleteMany(
+    //     { age: 21 },
     //     {
-    //       $set: {
-    //         age: 69,
-    //       },
+    //       name: "Shivang",
     //     }
     //   )
     //   .then((result) => {
@@ -56,47 +50,12 @@ MongoClient.connect(
     //     console.log(error);
     //   });
 
-    // db.collection("users")
-    //   .updateOne(
-    //     { _id: new ObjectId("636683eac42f6336a59b86b4") },
-    //     {
-    //       $inc: {
-    //         age: 1,
-    //       },
-    //     }
-    //   )
-    //   .then((result) => {
-    //     console.log(result);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    //update all with age >15 with name = new SHivang with age 15
-    // db.collection("users").updateMany(
-    //   {
-    //     age: { $gt: 20 },
-    //   },
-    //   {
-    //     $set: { name: "New Shivang with age > 15" },
-    //   }
-    // ).then((result) => {
+    // db.collection("tasks").deleteOne({ description: "Task 1" }.then((result)=>{
     //   console.log(result);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
     // });
 
-    //empty filter object to update all
     db.collection("tasks")
-      .updateMany(
-        {},
-        {
-          $set: {
-            completed: true,
-          },
-        }
-      )
+      .deleteOne({ completed: false })
       .then((result) => {
         console.log(result);
       })
