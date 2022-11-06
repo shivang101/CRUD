@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-mongoose.connect("mongodb://127.0.0.1:27017/task-manager-api");
-
-const Task = mongoose.model("tasks", {
+const Task = mongoose.model("Task", {
   description: {
     type: String,
     required: true,
     trim: true,
+    cast: false, // Disable casting just for this path
   },
   completed: {
     type: Boolean,
     default: false,
   },
 });
+
+module.exports = Task;
