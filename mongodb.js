@@ -22,36 +22,86 @@ MongoClient.connect(
     }
     console.log(`Connected Correctly`);
     const db = client.db(databaseName);
-
-    // db.collection("users").findOne(
-    //   { _id: new ObjectId("636683eac42f6336a59b86b4") },
-    //   (error, user) => {
-    //     if (error) {
-    //       return console.log("unable to fetch");
-    //     }
-    //     console.log(user);
-    //   }
-    // );
-
-    db.collection("tasks").findOne(
+    /* ///////////////////////////////////////////////////////////////////
+    const updatePromise = db.collection("users").updateOne(
+      { _id: new ObjectId("636683eac42f6336a59b86b4") },
       {
-        _id: new ObjectId("636684f745ece204057ea041"),
-      },
-      (error, result) => {
-        if (error) {
-          return console.log("unable to fetch");
-        }
-        console.log(result);
+        $set: {
+          age: 69,
+        },
       }
     );
 
+    updatePromise
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+*/
+    // db.collection("users")
+    //   .updateOne(
+    //     { _id: new ObjectId("636683eac42f6336a59b86b4") },
+    //     {
+    //       $set: {
+    //         age: 69,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    // db.collection("users")
+    //   .updateOne(
+    //     { _id: new ObjectId("636683eac42f6336a59b86b4") },
+    //     {
+    //       $inc: {
+    //         age: 1,
+    //       },
+    //     }
+    //   )
+    //   .then((result) => {
+    //     console.log(result);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    //update all with age >15 with name = new SHivang with age 15
+    // db.collection("users").updateMany(
+    //   {
+    //     age: { $gt: 20 },
+    //   },
+    //   {
+    //     $set: { name: "New Shivang with age > 15" },
+    //   }
+    // ).then((result) => {
+    //   console.log(result);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+
+    //empty filter object to update all
     db.collection("tasks")
-      .find({ completed: false })
-      .toArray((error, users) => {
-        if (error) {
-          return console.log("Unable to find");
+      .updateMany(
+        {},
+        {
+          $set: {
+            completed: true,
+          },
         }
-        console.log(users);
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 );
