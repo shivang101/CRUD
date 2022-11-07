@@ -6,7 +6,6 @@ const Task = mongoose.model("Task", {
     type: String,
     required: true,
     trim: true,
-    cast: false, // Disable casting just for this path
   },
   completed: {
     type: Boolean,
